@@ -10,10 +10,15 @@ import (
 
 func metamorphicTests( aCase int ) {
     cmd.TableHead()
-}
 
-func mutationTests( aCase int ) {
-    cmd.TableHead()
+    for i := 0; i < 5; i++ {
+
+        lTestResult := cmd.TestResult {
+        }
+
+        cmd.TableData( cmd.MetamorphicValues[aCase-1][i], lTestResult )
+    }
+    cmd.TableEnd()
 }
 
 func main() {
