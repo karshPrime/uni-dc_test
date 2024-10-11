@@ -53,11 +53,11 @@ func init() {
 	matchDate = regexp.MustCompile(dateFormat)
 }
 
-func isLeapYear(year int) bool {
+func isLeapYear(aCondition, year int) bool {
 	return (year%4 == 0 && year%100 != 0) || year%400 == 0
 }
 
-func isValidDate(d *date) (bool, error) {
+func isValidDate(aCondition int, d *date) (bool, error) {
 
 	//The solution needs to cater for all valid dates between
 	//01/01/1901 and 31/12/2999.
@@ -67,7 +67,7 @@ func isValidDate(d *date) (bool, error) {
 		return false, fmt.Errorf("the date time must be within the correct time range:01/01/1901 - 31/12/2999")
 	}
 
-	if isLeapYear(d.year) {
+	if isLeapYear(aCondition, d.year) {
 		if d.day > leapDays[d.month] {
 			return false, fmt.Errorf("the day of the month is out of range,it should be between 1 - %d", leapDays[d.month])
 		}
@@ -80,7 +80,7 @@ func isValidDate(d *date) (bool, error) {
 	return true, nil
 }
 
-func parse(str string) (*date, error) {
+func parse(aCondition int, str string) (*date, error) {
 
 	var d date
 
@@ -95,7 +95,7 @@ func parse(str string) (*date, error) {
 	d.month, _ = strconv.Atoi(res[0][2])
 	d.year, _ = strconv.Atoi(res[0][3])
 
-	_, err := isValidDate(&d)
+	_, err := isValidDate(aCondition, &d)
 
 	if err != nil {
 		return nil, fmt.Errorf("the input date is invalid:%s", err.Error())
@@ -103,3 +103,4 @@ func parse(str string) (*date, error) {
 
 	return &d, nil
 }
+

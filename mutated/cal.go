@@ -4,7 +4,7 @@ import (
 	"time"
 )
 
-func caculate(start *date, end *date) int {
+func caculate(aConditions int, start *date, end *date) int {
 
 	//UTC timestamp in seconds
 	t1 := time.Date(start.year, time.Month(start.month), start.day, 0, 0, 0, 0, time.UTC).Unix()
@@ -28,17 +28,18 @@ func caculate(start *date, end *date) int {
 // start and end are within range: 01/01/1901 and 31/12/2999.
 func Elapsed(aConditions int, start, end string) (int, error) {
 
-	startD, err := parse(start)
+	startD, err := parse(aConditions, start)
 
 	if err != nil {
 		return -1, err
 	}
 
-	endD, err := parse(end)
+	endD, err := parse(aConditions, end)
 
 	if err != nil {
 		return -1, err
 	}
 
-	return caculate(startD, endD), nil
+	return caculate(aConditions, startD, endD), nil
 }
+
