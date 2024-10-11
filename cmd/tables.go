@@ -14,12 +14,27 @@ func padPrint[ T any ]( aWidth int, aMsg T ) {
     fmt.Printf("%*s%s%*s", lLeftPad, "", lMsgString, lRightPad, "")
 }
 
+func PrintRepeat( aBefore, aRepeat, aAfter string, aTimes int, aNLine bool ) {
+    fmt.Printf( "%v", aBefore )
+
+    for i := 0; i < aTimes; i++ {
+        fmt.Printf( "%v", aRepeat )
+    }
+
+    fmt.Printf( "%v", aAfter )
+
+    if aNLine {
+        fmt.Println("")
+    }
+}
+
 
 //- Metamorphic ----------------------------------------------------------------
 
 func MetamorphicTableHead() {
-    fmt.Printf("|--------------------------------------|")
-    fmt.Println("|--------------------------------------||----------|")
+    PrintRepeat( "|", "-", "|", 38, false )
+    PrintRepeat( "|", "-", "|", 38, false )
+    PrintRepeat( "|", "-", "|", 10, true  )
 
     fmt.Printf("|");
     padPrint(38, "I N I T I A L"); fmt.Printf("||");
@@ -33,8 +48,13 @@ func MetamorphicTableHead() {
 }
 
 func MetamorphicTableEnd() {
-    fmt.Printf("|------------|------------|------------|")
-    fmt.Println("|------------|------------|------------||----------|")
+    PrintRepeat( "|", "-", "",  12, false )
+    PrintRepeat( "|", "-", "",  12, false )
+    PrintRepeat( "|", "-", "|", 12, false )
+    PrintRepeat( "|", "-", "",  12, false )
+    PrintRepeat( "|", "-", "",  12, false )
+    PrintRepeat( "|", "-", "|", 12, false )
+    PrintRepeat( "|", "-", "|", 10, true  )
 }
 
 func MetamorphicTableData( aCase, aIndex, aIResult, aMResult int ) {
@@ -55,8 +75,9 @@ func MetamorphicTableData( aCase, aIndex, aIResult, aMResult int ) {
 //- Comparison -----------------------------------------------------------------
 
 func ComparisonTableHead() {
-    fmt.Printf("|-------------------------||-------------------------|")
-    fmt.Println("|------------|")
+    PrintRepeat( "|", "-", "|", 25, false )
+    PrintRepeat( "|", "-", "|", 25, false )
+    PrintRepeat( "|", "-", "|", 10, true  )
 
     fmt.Printf("|");
     padPrint(25, "Input Dates"); fmt.Printf("||");
@@ -70,8 +91,11 @@ func ComparisonTableHead() {
 }
 
 func ComparisonTableEnd() {
-    fmt.Printf("|------------|------------||------------|------------|")
-    fmt.Println("|------------|")
+    PrintRepeat( "|", "-", "",  10, false )
+    PrintRepeat( "|", "-", "|", 10, false )
+    PrintRepeat( "|", "-", "",  10, false )
+    PrintRepeat( "|", "-", "|", 10, false )
+    PrintRepeat( "|", "-", "|", 10, false )
 }
 
 func ComparisonTableData( aIndex , aIResult, aMResult int ) {
