@@ -14,9 +14,12 @@ func padPrint[ T any ]( aWidth int, aMsg T ) {
     fmt.Printf("%*s%s%*s", lLeftPad, "", lMsgString, lRightPad, "")
 }
 
-func TableHead() {
+
+//- Metamorphic ----------------------------------------------------------------
+
+func MetamorphicTableHead() {
     fmt.Printf("|--------------------------------------|")
-    fmt.Printf("|--------------------------------------||----------|\n")
+    fmt.Println("|--------------------------------------||----------|")
 
     fmt.Printf("|");
     padPrint(38, "I N I T I A L"); fmt.Printf("||");
@@ -26,23 +29,62 @@ func TableHead() {
     fmt.Printf("| Start Date |  End Date  | Days Count |")
     fmt.Printf("| Start Date |  End Date  | Days Count ||  Status  |\n")
 
-    TableEnd()
+    MetamorphicTableEnd()
 }
 
-func TableEnd() {
+func MetamorphicTableEnd() {
     fmt.Printf("|------------|------------|------------|")
-    fmt.Printf("|------------|------------|------------||----------|\n")
+    fmt.Println("|------------|------------|------------||----------|")
 }
 
-func TableData( aValueSet ProgramIO, aTestResult TestResult ) {
-    fmt.Printf( "| %v | %v |", aValueSet.IStart, aValueSet.IEnd )
-    padPrint( 12, aTestResult.IResult )
+func MetamorphicTableData( aCase, aIndex, aIResult, aMResult int ) {
+    lExpected := TestValues[aIndex]
+    lTesting  := MetamorphicExpected[aCase][aIndex]
 
-    fmt.Printf( "|| %v | %v |", aValueSet.MStart, aValueSet.MEnd )
-    padPrint( 12, aTestResult.MResult )
+    fmt.Printf( "| %v | %v |", lExpected.Start, lExpected.End)
+    padPrint( 12, aIResult)
+
+    fmt.Printf( "|| %v | %v |", lTesting.Start, lTesting.End )
+    padPrint( 12, aMResult )
 
     fmt.Printf( "||" )
-    padPrint( 10, aTestResult.TestCase )
+    padPrint( 10, ( (aIResult + lTesting.Difference) == aMResult ) )
+    fmt.Println( "|" )
+}
+
+//- Comparison -----------------------------------------------------------------
+
+func ComparisonTableHead() {
+    fmt.Printf("|-------------------------||-------------------------|")
+    fmt.Println("|------------|")
+
+    fmt.Printf("|");
+    padPrint(25, "Input Dates"); fmt.Printf("||");
+    padPrint(25, "Counted Days"); fmt.Printf("||");
+    padPrint(12, "Test"); fmt.Printf("|\n");
+
+    fmt.Printf("|    Start   |    End     ||  Original  |  Modified  |")
+    fmt.Println("|   Result   |")
+
+    ComparisonTableEnd() 
+}
+
+func ComparisonTableEnd() {
+    fmt.Printf("|------------|------------||------------|------------|")
+    fmt.Println("|------------|")
+}
+
+func ComparisonTableData( aIndex , aIResult, aMResult int ) {
+    lValues := TestValues[aIndex]
+
+    fmt.Printf( "| %v | %v ||", lValues.Start, lValues.End )
+    padPrint( 12, aIResult )
+
+    fmt.Printf( "|" )
+    padPrint( 12, aIResult )
+
+    fmt.Printf( "||" )
+    padPrint( 12, ( (aIResult + lValues.Difference) == aMResult ) )
     fmt.Println( "|" )
 }
 
