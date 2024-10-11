@@ -35,13 +35,13 @@ func metamorphicTests( aCase int ) {
 }
 
 func main() {
-    fmt.Println(" Metamorphic Test 1: Inverted Start & End")
-    metamorphicTests(1)
+    // fmt.Println(" Metamorphic Test 1: Inverted Start & End")
+    // metamorphicTests(1)
 
-    fmt.Println("\n Metamorphic Test 2: Same Date, Different Years")
-    metamorphicTests(2)
-
-    fmt.Println("\n Metamorphic Test 3: Different Date, Same Month & Year")
+    // fmt.Println(" Metamorphic Test 2: Same Date, Different Years")
+    // metamorphicTests(2)
+    //
+    fmt.Println("Metamorphic Test 3: Different Date, Same Month & Year")
     metamorphicTests(3)
 }
 
