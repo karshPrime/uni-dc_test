@@ -105,7 +105,7 @@ func ComparisonTableData( aIndex , aIResult, aMResult int ) {
     padPrint( 12, aIResult )
 
     fmt.Printf( "|" )
-    padPrint( 12, aIResult )
+    padPrint( 12, aMResult )
 
     fmt.Printf( "||" )
     padPrint( 12, ( (aIResult + lValues.Difference) == aMResult ) )
