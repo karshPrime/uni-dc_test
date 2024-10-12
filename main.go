@@ -5,19 +5,20 @@ import (
     "fmt"
     "github.com/karshPrime/uni-dc_test/cmd"
 
-    "github.com/wy3148/dc/date" // Program Under Test
+    "github.com/wy3148/dc/date"                 // Program Under Test
     "github.com/karshPrime/uni-dc_test/mutated" // Mutated Program Source
 )
 
-const DEFAULT = 0;
-var TEST_PURPOSE = [3]string {
+const DEFAULT = 0;               // for better clarity with function calls
+var TEST_PURPOSE = [3]string {   // Purpose for each Metamorphic Test
     "Inverted Start & End",
     "Same Date, Different Years",
     "Different Date, Same Month & Year",
 }
 
+// Run Metamorphic Tests on the Program (either original code or mutated)
 func metamorphicTests( aCase, aCondition int ) {
-    fmt.Printf( "Metamorphic Test %v: %v\n", aCase, TEST_PURPOSE[aCase-1] )
+    fmt.Printf( " Metamorphic Test %v: %v\n", aCase, TEST_PURPOSE[aCase-1] )
     cmd.MetamorphicTableHead()
 
     /* Got identical loop bellow to not have if-else check on every loop

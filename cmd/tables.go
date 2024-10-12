@@ -77,7 +77,7 @@ func MetamorphicTableData( aCase, aIndex, aIResult, aMResult int ) {
 func ComparisonTableHead() {
     PrintRepeat( "|", "-", "|", 25, false )
     PrintRepeat( "|", "-", "|", 25, false )
-    PrintRepeat( "|", "-", "|", 10, true  )
+    PrintRepeat( "|", "-", "|", 12, true  )
 
     fmt.Printf("|");
     padPrint(25, "Input Dates"); fmt.Printf("||");
@@ -91,11 +91,11 @@ func ComparisonTableHead() {
 }
 
 func ComparisonTableEnd() {
-    PrintRepeat( "|", "-", "",  10, false )
-    PrintRepeat( "|", "-", "|", 10, false )
-    PrintRepeat( "|", "-", "",  10, false )
-    PrintRepeat( "|", "-", "|", 10, false )
-    PrintRepeat( "|", "-", "|", 10, false )
+    PrintRepeat( "|", "-", "",  12, false )
+    PrintRepeat( "|", "-", "|", 12, false )
+    PrintRepeat( "|", "-", "",  12, false )
+    PrintRepeat( "|", "-", "|", 12, false )
+    PrintRepeat( "|", "-", "|", 12, true  )
 }
 
 func ComparisonTableData( aIndex , aIResult, aMResult int ) {
