@@ -2,7 +2,9 @@
 package main
 
 import (
+    "os"
     "fmt"
+    "bufio"
     "github.com/karshPrime/uni-dc_test/cmd"
 
     "github.com/wy3148/dc/date"                 // Program Under Test
@@ -65,20 +67,55 @@ func metamorphicTests( aCase, aCondition int ) {
     fmt.Println("")
 }
 
+// Compare results of Mutated Code against Original
+func compareOriginal( aCondition int ) {
+    fmt.Println( " Comparing Mutated Code Against Original Code" )
+    cmd.ComparisonTableHead()
+
+    for i := 0; i < 5; i++ {
+        lIResult, _ := date.Elapsed(
+            cmd.TestValues[i].Start,
+            cmd.TestValues[i].End )
+
+        lMResult, _ := mutated.Elapsed( aCondition,
+            cmd.TestValues[i].Start,
+            cmd.TestValues[i].End )
+
+        cmd.ComparisonTableData( i, lIResult, lMResult )
+    }
+
+    cmd.ComparisonTableEnd()
+}
+
+
 func main() {
     // Original Code Runs
-    metamorphicTests(1, DEFAULT)
-    metamorphicTests(2, DEFAULT)
-    metamorphicTests(3, DEFAULT)
+    // metamorphicTests(1, DEFAULT)
+    // metamorphicTests(2, DEFAULT)
+    // metamorphicTests(3, DEFAULT)
+
+    lScanner := bufio.NewScanner(os.Stdin)
 
     // Mutation Test
     for i := 0; i < 30; i++ {
+        fmt.Print("\033[H\033[2J") // clear screen [macos/linux]
+
         fmt.Printf("\n|==[ Checking Mutant %02d ", i+1 )
         cmd.PrintRepeat( "]", "=", "|", 66, true )
 
+        // Running Metamorphic Tests
         metamorphicTests(1, i)
         metamorphicTests(2, i)
         metamorphicTests(3, i)
+
+        // Comparing Against OG
+        compareOriginal( i )
+
+        // pause for [Y] before continuing [N] quits
+        fmt.Print("\nContinue? (Y/n): ")
+        lScanner.Scan()
+        input := lScanner.Text()
+        if input == "n" { break }
     }
 }
 
